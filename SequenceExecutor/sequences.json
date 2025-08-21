@@ -1,0 +1,42 @@
+﻿{
+  "sequences": [
+    {
+      "Name": "Сконвертировать",
+      "Active": false,
+      "Tools": [
+        {
+          "Name": "КонсультантПлюс",
+          "Type": "exe",
+          "Options": ""
+        },
+        {
+          "Name": "Перемещение ответа",
+          "Type": "move",
+          "Options": ""
+        }
+      ]
+    },
+    {
+      "Name": "Калькулятор",
+      "Active": true,
+      "Tools": [
+        {
+          "Name": "Калькулятор",
+          "Type": "exe",
+          "Options": "calc.exe"
+        }
+      ]
+    },
+    {
+      "Name": "Блокнот",
+      "Active": true,
+      "Tools": [
+        {
+          "Name": "Notepad",
+          "Type": "exe",
+          "Options": "notepad.exe"
+        }
+      ]
+    }
+  ]
+}

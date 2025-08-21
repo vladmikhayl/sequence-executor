@@ -5,6 +5,7 @@ namespace SequenceExecutor.Models
 {
     public class Tool
     {
+
         public string Name { get; set; } = null!;
         public string Type { get; set; } = null!;
         public string Options { get; set; } = null!;
@@ -14,18 +15,23 @@ namespace SequenceExecutor.Models
             switch (Type)
             {
                 case "exe":
-                    var target = Options?.Trim();
-                    if (string.IsNullOrWhiteSpace(target))
-                        throw new InvalidOperationException("Не указан Options");
-                    LaunchExe(target);
-                    break;
+                    ExecuteExe(); break;
                 default:
                     throw new NotSupportedException("Пока поддерживаются только инструменты типа exe");
             }
+
+            // NOTE: текущая реализация через switch оставлена для простоты.
+            // При росте количества типов, выполнение должно быть вынесено из этого класса,
+            // чтобы сохранить разделение ответственности (SRP) и открытость к расширению (OCP).
         }
 
-        private static void LaunchExe(string target)
+        private void ExecuteExe()
         {
+            var target = Options?.Trim();
+
+            if (string.IsNullOrWhiteSpace(target))
+                throw new InvalidOperationException("Не указан Options");
+
             try
             {
                 var psi = new ProcessStartInfo

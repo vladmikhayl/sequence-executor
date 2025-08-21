@@ -1,7 +1,9 @@
-﻿namespace SequenceExecutor.Models
+﻿using System.Collections.Generic;
+
+namespace SequenceExecutor.Models
 {
     public class Root
     {
-        public Sequence[] Sequences { get; set; } = [];
+        public List<Sequence> Sequences { get; set; } = [];
     }
 }

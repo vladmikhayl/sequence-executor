@@ -47,6 +47,7 @@ namespace SequenceExecutor.ViewModels
 
                 var json = File.ReadAllText(path);
                 var root = JsonSerializer.Deserialize<Root>(json, jsonSerializerOptions);
+
                 ActiveSequences.Clear();
                 if (root != null)
                     foreach (var s in root.Sequences)

@@ -33,32 +33,28 @@ namespace SequenceExecutor.ViewModels
             LoadSequences();
         }
 
-        void LoadSequences()
+        private void LoadSequences()
         {
+            Root? root;
+
             try
             {
                 var path = Path.Combine(AppContext.BaseDirectory, "sequences.json");
-                
-                if (!File.Exists(path))
-                {
-                    Debug.WriteLine("Файл sequences.json не найден");
-                    return;
-                }
-
                 var json = File.ReadAllText(path);
-                var root = JsonSerializer.Deserialize<Root>(json, jsonSerializerOptions);
-
-                ActiveSequences.Clear();
-                if (root != null)
-                    foreach (var s in root.Sequences)
-                        if (s.Active)
-                            ActiveSequences.Add(s);
+                root = JsonSerializer.Deserialize<Root>(json, jsonSerializerOptions);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Ошибка чтения JSON: {ex.Message}");
                 return;
             }
+
+            ActiveSequences.Clear();
+
+            if (root != null)
+                foreach (var s in root.Sequences)
+                    if (s.Active)
+                        ActiveSequences.Add(s);
         }
 
         private async Task RunSequenceAsync(Sequence seq)
